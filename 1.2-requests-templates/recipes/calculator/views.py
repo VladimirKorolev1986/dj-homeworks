@@ -19,6 +19,7 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
+
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
 # В качестве контекста должен быть передан словарь с рецептом:
@@ -28,3 +29,7 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+def rec(request, tag):
+    context ={'recipe':DATA[tag]}
+    return render(request, 'calculator/index.html', context=context)
