@@ -31,7 +31,8 @@ DATA = {
 # }
 
 def recipe(request, dish):
-    quan = int(request.GET.get('servings', 1))
-    new_dict = DATA[dish].update((key, value*quan) for key, value in DATA[dish].items())
-    context = {'recipe': new_dict}
-    return render(request, 'calculator/index.html', context=context)
+    quantity = int(request.GET.get('servings', 1))
+    new_dict = DATA[dish]
+    new_dict.update((key, value * quantity) for key, value in new_dict.items())
+    return render(request, 'calculator/index.html',
+                  context={'recipe': new_dict})
