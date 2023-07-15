@@ -30,6 +30,8 @@ DATA = {
 #   }
 # }
 
-def rec(request, tag):
-    context ={'recipe':DATA[tag]}
+def recipe(request, dish):
+    quan = int(request.GET.get('servings', 1))
+    new_dict = DATA[dish].update((key, value*quan) for key, value in DATA[dish].items())
+    context = {'recipe': new_dict}
     return render(request, 'calculator/index.html', context=context)
