@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+import csv
 
 
 def index(request):
@@ -10,8 +11,13 @@ def bus_stations(request):
     # получите текущую страницу и передайте ее в контекст
     # также передайте в контекст список станций на странице
 
+    with open('list.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            print(row['first_name'], row['last_name'])
+
     context = {
-    #     'bus_stations': ...,
-    #     'page': ...,
+        #     'bus_stations': ...,
+        #     'page': ...,
     }
     return render(request, 'stations/index.html', context)
