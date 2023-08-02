@@ -25,4 +25,4 @@ class Scope(models.Model):
     """таблица-связка между статьей и тегом. Именно здесь должно быть свойство is_main"""
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='scopes')
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scopes')
-    is_main = True
+    is_main = models.BooleanField()
