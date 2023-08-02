@@ -7,11 +7,11 @@ from .models import Article, Scope, Tag
 
 class ScopeInlineFormset(BaseInlineFormSet):
     def clean(self):
-        ll = [form.cleaned_data.get("is_main") for form in self.forms]
-        ll.remove(None)
+        ll = [form.cleaned_data.get("is_main") for form in self.forms] # список булевых значение
+        ll.remove(None) # убрать пустые строки
         if not ll.count(True) == 1:
-            raise ValidationError('Основная запись должна быть одна')
-        return super().clean()  # вызываем базовый код переопределяемого метода
+            raise ValidationError('Основной тег должен быть только один')
+        return super().clean()
 
 
 class ScopeInline(admin.TabularInline):
