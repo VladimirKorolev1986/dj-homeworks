@@ -7,10 +7,8 @@ from .models import Article, Scope, Tag
 
 class ScopeInlineFormset(BaseInlineFormSet):
     def clean(self):
-        ll = [form.cleaned_data.get("is_main") for form in self.forms] # список булевых значение
-        ll1 = [form.cleaned_data for form in self.forms]
-        print(ll1)
-        if not ll.count(True) == 1:
+        list_bool_of_tags = [form.cleaned_data.get("is_main") for form in self.forms] # список булевых значение
+        if not list_bool_of_tags.count(True) == 1:
             raise ValidationError('Основной тег должен быть только один')
         return super().clean()
 
